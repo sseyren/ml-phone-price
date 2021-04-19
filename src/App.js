@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles, Grid, Button, TextField, FormControlLabel, Switch } from '@material-ui/core';
+import { makeStyles, Grid, TextField, FormControlLabel, Switch } from '@material-ui/core';
 
+import KNN from 'ml-knn'
 import params from './params.json'
+import modelJSON from './model.json'
+
+const model = KNN.load(modelJSON)
 
 const useStyles = makeStyles(theme => ({
   form: {
@@ -23,7 +27,7 @@ function Form(props) {
   useEffect(() => { onChange(state) }, [onChange, state])
 
   const handleInput = (type, key, event) => {
-    const value = (type === "number") ? Number(event.target.value) : Boolean(event.target.checked)
+    const value = Number((type === "number") ? event.target.value : event.target.checked)
     setState(prev => ({ ...prev, [key]: value }))
   }
 
@@ -34,7 +38,7 @@ function Form(props) {
           <FormControlLabel
             key={param.key}
             control={<Switch
-              checked={state[param.key]}
+              checked={Boolean(state[param.key])}
               onChange={e => handleInput("boolean", param.key, e)}
             />}
             label={param.name}
@@ -57,10 +61,31 @@ function Form(props) {
   )
 }
 
+function Result(props) {
+  const { features } = props;
+
+  if (features) {
+    let values = params.map(p => features[p.key])
+    let predict = model.predict([values])[0]
+
+    return (
+      <div>
+        <h2>{predict}</h2>
+        {Object.keys(features).map(key => (
+          <p key={key}>{key}: {features[key]}</p>
+        ))}
+      </div>
+    )
+  } else {
+    return null
+  }
+}
+
 function App() {
   const classes = useStyles()
 
-  const handleForm = e => console.log(e)
+  const [features, setFeatures] = useState(null)
+  const handleForm = features => setFeatures(features)
 
   return (
     <Grid container justify="center" alignItems="baseline" spacing={2}>
@@ -68,9 +93,7 @@ function App() {
         <Form onChange={handleForm.bind(this)} />
       </Grid>
       <Grid item xs={3}>
-        <Button variant="contained" color="primary">
-          Hello World
-        </Button>
+        <Result features={features} />
       </Grid>
     </Grid>
   )
