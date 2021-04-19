@@ -8,7 +8,7 @@
   {
     "type": "boolean",
     "key": "blue",
-    "default": false,
+    "default": 0,
     "name": "Bluetooth"
   },
   {
@@ -20,7 +20,7 @@
   {
     "type": "boolean",
     "key": "dual_sim",
-    "default": false,
+    "default": 0,
     "name": "Çift SIM"
   },
   {
@@ -32,7 +32,7 @@
   {
     "type": "boolean",
     "key": "four_g",
-    "default": true,
+    "default": 1,
     "name": "4G"
   },
   {
@@ -104,19 +104,19 @@
   {
     "type": "boolean",
     "key": "three_g",
-    "default": true,
+    "default": 1,
     "name": "3G"
   },
   {
     "type": "boolean",
     "key": "touch_screen",
-    "default": false,
+    "default": 0,
     "name": "Dokunmatik Ekran"
   },
   {
     "type": "boolean",
     "key": "wifi",
-    "default": true,
+    "default": 1,
     "name": "WiFi"
   }
 ]
