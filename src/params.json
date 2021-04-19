@@ -2,121 +2,121 @@
   {
     "type": "number",
     "key": "battery_power",
-    "default": 100,
-    "name": "Batarya gücü"
-  },
-  {
-    "type": "number",
-    "key": "clock_speed",
-    "default": 100,
-    "name": "?"
-  },
-  {
-    "type": "number",
-    "key": "int_memory",
-    "default": 100,
-    "name": "?"
-  },
-  {
-    "type": "number",
-    "key": "m_dep",
-    "default": 100,
-    "name": "?"
-  },
-  {
-    "type": "number",
-    "key": "mobile_wt",
-    "default": 100,
-    "name": "?"
-  },
-  {
-    "type": "number",
-    "key": "n_cores",
-    "default": 100,
-    "name": "?"
-  },
-  {
-    "type": "number",
-    "key": "pc",
-    "default": 100,
-    "name": "?"
-  },
-  {
-    "type": "number",
-    "key": "px_height",
-    "default": 100,
-    "name": "?"
-  },
-  {
-    "type": "number",
-    "key": "px_width",
-    "default": 100,
-    "name": "?"
-  },
-  {
-    "type": "number",
-    "key": "ram",
-    "default": 100,
-    "name": "?"
-  },
-  {
-    "type": "number",
-    "key": "sc_h",
-    "default": 100,
-    "name": "?"
-  },
-  {
-    "type": "number",
-    "key": "sc_w",
-    "default": 100,
-    "name": "?"
-  },
-  {
-    "type": "number",
-    "key": "talk_time",
-    "default": 100,
-    "name": "?"
+    "default": 1821,
+    "name": "Batarya gücü (mAh)"
   },
   {
     "type": "boolean",
     "key": "blue",
-    "default": true,
-    "name": "?"
+    "default": false,
+    "name": "Bluetooth"
+  },
+  {
+    "type": "number",
+    "key": "clock_speed",
+    "default": 1.7,
+    "name": "İşlemci Hızı (gHz)"
   },
   {
     "type": "boolean",
     "key": "dual_sim",
-    "default": true,
-    "name": "?"
+    "default": false,
+    "name": "Çift SIM"
   },
   {
-    "type": "boolean",
+    "type": "number",
     "key": "fc",
-    "default": true,
-    "name": "?"
+    "default": 4,
+    "name": "Ön Kamera Çözünürlüğü (megapixel)"
   },
   {
     "type": "boolean",
     "key": "four_g",
     "default": true,
-    "name": "?"
+    "name": "4G"
+  },
+  {
+    "type": "number",
+    "key": "int_memory",
+    "default": 10,
+    "name": "Dahili Depolama (GB)"
+  },
+  {
+    "type": "number",
+    "key": "m_dep",
+    "default": 0.8,
+    "name": "Derinlik (cm)"
+  },
+  {
+    "type": "number",
+    "key": "mobile_wt",
+    "default": 139,
+    "name": "Ağırlık (g)"
+  },
+  {
+    "type": "number",
+    "key": "n_cores",
+    "default": 8,
+    "name": "İşlemci Çekirdek Sayısı"
+  },
+  {
+    "type": "number",
+    "key": "pc",
+    "default": 10,
+    "name": "Arka Kamera Çözünürlüğü (megapixel)"
+  },
+  {
+    "type": "number",
+    "key": "px_height",
+    "default": 381,
+    "name": "Ekran: Yükseklik (px)"
+  },
+  {
+    "type": "number",
+    "key": "px_width",
+    "default": 1018,
+    "name": "Ekran: Genişlik (px)"
+  },
+  {
+    "type": "number",
+    "key": "ram",
+    "default": 3220,
+    "name": "Bellek (MB)"
+  },
+  {
+    "type": "number",
+    "key": "sc_h",
+    "default": 13,
+    "name": "Ekranın Boyu (cm)"
+  },
+  {
+    "type": "number",
+    "key": "sc_w",
+    "default": 8,
+    "name": "Ekranın Eni (cm)"
+  },
+  {
+    "type": "number",
+    "key": "talk_time",
+    "default": 18,
+    "name": "Tek şarj ile kullanım süresi (saat)"
   },
   {
     "type": "boolean",
     "key": "three_g",
     "default": true,
-    "name": "?"
+    "name": "3G"
   },
   {
     "type": "boolean",
     "key": "touch_screen",
-    "default": true,
-    "name": "?"
+    "default": false,
+    "name": "Dokunmatik Ekran"
   },
   {
     "type": "boolean",
     "key": "wifi",
     "default": true,
-    "name": "?"
+    "name": "WiFi"
   }
 ]
