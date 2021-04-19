@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
     "fast-csv": "^4.3.6",
+    "fontsource-roboto": "^4.0.0",
     "mathjs": "^9.3.2",
     "ml-confusion-matrix": "^0.4.0",
     "ml-knn": "^3.0.0",

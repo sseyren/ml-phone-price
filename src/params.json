@@ -1,0 +1,122 @@
+[
+  {
+    "type": "number",
+    "key": "battery_power",
+    "default": 100,
+    "name": "Batarya gücü"
+  },
+  {
+    "type": "number",
+    "key": "clock_speed",
+    "default": 100,
+    "name": "?"
+  },
+  {
+    "type": "number",
+    "key": "int_memory",
+    "default": 100,
+    "name": "?"
+  },
+  {
+    "type": "number",
+    "key": "m_dep",
+    "default": 100,
+    "name": "?"
+  },
+  {
+    "type": "number",
+    "key": "mobile_wt",
+    "default": 100,
+    "name": "?"
+  },
+  {
+    "type": "number",
+    "key": "n_cores",
+    "default": 100,
+    "name": "?"
+  },
+  {
+    "type": "number",
+    "key": "pc",
+    "default": 100,
+    "name": "?"
+  },
+  {
+    "type": "number",
+    "key": "px_height",
+    "default": 100,
+    "name": "?"
+  },
+  {
+    "type": "number",
+    "key": "px_width",
+    "default": 100,
+    "name": "?"
+  },
+  {
+    "type": "number",
+    "key": "ram",
+    "default": 100,
+    "name": "?"
+  },
+  {
+    "type": "number",
+    "key": "sc_h",
+    "default": 100,
+    "name": "?"
+  },
+  {
+    "type": "number",
+    "key": "sc_w",
+    "default": 100,
+    "name": "?"
+  },
+  {
+    "type": "number",
+    "key": "talk_time",
+    "default": 100,
+    "name": "?"
+  },
+  {
+    "type": "boolean",
+    "key": "blue",
+    "default": true,
+    "name": "?"
+  },
+  {
+    "type": "boolean",
+    "key": "dual_sim",
+    "default": true,
+    "name": "?"
+  },
+  {
+    "type": "boolean",
+    "key": "fc",
+    "default": true,
+    "name": "?"
+  },
+  {
+    "type": "boolean",
+    "key": "four_g",
+    "default": true,
+    "name": "?"
+  },
+  {
+    "type": "boolean",
+    "key": "three_g",
+    "default": true,
+    "name": "?"
+  },
+  {
+    "type": "boolean",
+    "key": "touch_screen",
+    "default": true,
+    "name": "?"
+  },
+  {
+    "type": "boolean",
+    "key": "wifi",
+    "default": true,
+    "name": "?"
+  }
+]
