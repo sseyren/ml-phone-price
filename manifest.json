@@ -1,0 +1,8 @@
+{
+  "short_name": "Phone Price",
+  "name": "Machine learning model for predicting mobile phone price.",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
