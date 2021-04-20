@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/ml-phone-price/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/ml-phone-price/static/js/main.58843820.chunk.js",
-    "main.js.map": "/ml-phone-price/static/js/main.58843820.chunk.js.map",
+    "main.js": "/ml-phone-price/static/js/main.da723c60.chunk.js",
+    "main.js.map": "/ml-phone-price/static/js/main.da723c60.chunk.js.map",
     "runtime-main.js": "/ml-phone-price/static/js/runtime-main.d8f074fd.js",
     "runtime-main.js.map": "/ml-phone-price/static/js/runtime-main.d8f074fd.js.map",
     "static/css/2.98887b01.chunk.css": "/ml-phone-price/static/css/2.98887b01.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.98887b01.chunk.css",
     "static/js/2.e98ab08d.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.58843820.chunk.js"
+    "static/js/main.da723c60.chunk.js"
   ]
 }
