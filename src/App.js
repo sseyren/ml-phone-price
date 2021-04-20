@@ -38,10 +38,8 @@ function Form(props) {
   const { onChange } = props;
   const classes = useStyles()
 
-  const [state, setState] = useState(
-    Object.fromEntries(params.map(p => [p.key, p.default]))
-  )
-  const [preset, setPreset] = useState(examples[0].id);
+  const [state, setState] = useState(examples[0].features)
+  const [preset, setPreset] = useState(examples[0].id)
 
   useEffect(() => { onChange(state) }, [onChange, state])
 
