@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/ml-phone-price/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/ml-phone-price/static/js/main.da723c60.chunk.js",
-    "main.js.map": "/ml-phone-price/static/js/main.da723c60.chunk.js.map",
-    "runtime-main.js": "/ml-phone-price/static/js/runtime-main.d8f074fd.js",
-    "runtime-main.js.map": "/ml-phone-price/static/js/runtime-main.d8f074fd.js.map",
+    "main.js": "/ml-phone-price/static/js/main.fa0d7700.chunk.js",
+    "main.js.map": "/ml-phone-price/static/js/main.fa0d7700.chunk.js.map",
+    "runtime-main.js": "/ml-phone-price/static/js/runtime-main.3527f8f5.js",
+    "runtime-main.js.map": "/ml-phone-price/static/js/runtime-main.3527f8f5.js.map",
     "static/css/2.98887b01.chunk.css": "/ml-phone-price/static/css/2.98887b01.chunk.css",
-    "static/js/2.e98ab08d.chunk.js": "/ml-phone-price/static/js/2.e98ab08d.chunk.js",
-    "static/js/2.e98ab08d.chunk.js.map": "/ml-phone-price/static/js/2.e98ab08d.chunk.js.map",
-    "static/js/3.f8888231.chunk.js": "/ml-phone-price/static/js/3.f8888231.chunk.js",
-    "static/js/3.f8888231.chunk.js.map": "/ml-phone-price/static/js/3.f8888231.chunk.js.map",
+    "static/js/2.b1ad7368.chunk.js": "/ml-phone-price/static/js/2.b1ad7368.chunk.js",
+    "static/js/2.b1ad7368.chunk.js.map": "/ml-phone-price/static/js/2.b1ad7368.chunk.js.map",
+    "static/js/3.29627076.chunk.js": "/ml-phone-price/static/js/3.29627076.chunk.js",
+    "static/js/3.29627076.chunk.js.map": "/ml-phone-price/static/js/3.29627076.chunk.js.map",
     "index.html": "/ml-phone-price/index.html",
     "static/css/2.98887b01.chunk.css.map": "/ml-phone-price/static/css/2.98887b01.chunk.css.map",
     "static/css/main.6dea0f05.chunk.css.map": "/ml-phone-price/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.e98ab08d.chunk.js.LICENSE.txt": "/ml-phone-price/static/js/2.e98ab08d.chunk.js.LICENSE.txt",
+    "static/js/2.b1ad7368.chunk.js.LICENSE.txt": "/ml-phone-price/static/js/2.b1ad7368.chunk.js.LICENSE.txt",
     "static/media/index.css": "/ml-phone-price/static/media/roboto-vietnamese-400-normal.52cebac0.woff2"
   },
   "entrypoints": [
-    "static/js/runtime-main.d8f074fd.js",
+    "static/js/runtime-main.3527f8f5.js",
     "static/css/2.98887b01.chunk.css",
-    "static/js/2.e98ab08d.chunk.js",
+    "static/js/2.b1ad7368.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.da723c60.chunk.js"
+    "static/js/main.fa0d7700.chunk.js"
   ]
 }
