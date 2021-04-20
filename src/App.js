@@ -1,19 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles, Grid, TextField, FormControlLabel, Switch } from '@material-ui/core';
+import {
+  makeStyles,
+  Button,
+  FormControl,
+  FormControlLabel,
+  Grid,
+  InputLabel,
+  Select,
+  TextField,
+  Switch
+} from '@material-ui/core';
 
 import KNN from 'ml-knn'
 import params from './params.json'
+import examples from './examples.json'
 import modelJSON from './model.json'
 
 const model = KNN.load(modelJSON)
 
 const useStyles = makeStyles(theme => ({
   form: {
-    '& .MuiTextField-root': {
+    '& .MuiFormControl-root': {
       margin: theme.spacing(1),
       width: '22%',
     },
   },
+  exampleSelect: {
+    marginTop: theme.spacing(2),
+  },
+  exampleButton: {
+    marginTop: "8px",
+    height: "56px"
+  }
 }))
 
 function Form(props) {
@@ -23,6 +41,7 @@ function Form(props) {
   const [state, setState] = useState(
     Object.fromEntries(params.map(p => [p.key, p.default]))
   )
+  const [preset, setPreset] = useState(examples[0].id);
 
   useEffect(() => { onChange(state) }, [onChange, state])
 
@@ -30,6 +49,7 @@ function Form(props) {
     const value = Number((type === "number") ? event.target.value : event.target.checked)
     setState(prev => ({ ...prev, [key]: value }))
   }
+  const loadPreset = () => setState(examples.find(e => e.id === preset).features)
 
   return (
     <form className={classes.form} noValidate autoComplete="off">
@@ -56,6 +76,29 @@ function Form(props) {
             onChange={e => handleInput("number", param.key, e)}
           />
         ))}
+      </div>
+      <div className={classes.exampleSelect}>
+        <FormControl variant="outlined">
+          <InputLabel>Hazır Cihazlar</InputLabel>
+          <Select
+            native
+            value={preset}
+            onChange={e => setPreset(Number(e.target.value))}
+            label="Hazır Cihazlar"
+          >
+            {examples.map(e => (
+              <option key={e.id} value={e.id}>Cihaz {e.id}</option>
+            ))}
+          </Select>
+        </FormControl>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.exampleButton}
+          onClick={loadPreset}
+        >
+          Yükle
+        </Button>
       </div>
     </form>
   )
