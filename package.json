@@ -25,6 +25,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "trainmodel": "node model/create-model.js",
+    "createexamples": "node model/create-examples.js",
     "predeploy": "npm install && npm run build",
     "deploy": "gh-pages -d build"
   },

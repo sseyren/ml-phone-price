@@ -7,24 +7,7 @@ const { Matrix } = require('ml-matrix');
 const KNN = require("ml-knn");
 const ConfusionMatrix = require('ml-confusion-matrix');
 
-/**
- * Shuffles array in place.
- * @param {Array} a items An array containing the items.
- */
-function shuffle(a) {
-    var j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = a[i];
-        a[i] = a[j];
-        a[j] = x;
-    }
-    return a;
-}
-
-function onlyUnique(value, index, self) {
-    return self.indexOf(value) === index;
-}
+const { shuffle, onlyUnique } = require('./helpers');
 
 var X = new Matrix(0, 20);
 var y = new Matrix(0, 1);
