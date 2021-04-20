@@ -70,7 +70,7 @@ function Result(props) {
 
     return (
       <div>
-        <h2>{predict}</h2>
+        <h2>Fiyat Sınıfı: {predict}</h2>
         {Object.keys(features).map(key => (
           <p key={key}>{key}: {features[key]}</p>
         ))}
