@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   exampleSelect: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(4),
   },
   exampleButton: {
     marginTop: "8px",
