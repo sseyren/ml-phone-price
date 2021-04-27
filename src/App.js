@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import {
   makeStyles,
   Button,
+  Card,
+  CardContent,
   FormControl,
   FormControlLabel,
   Grid,
   InputLabel,
   Select,
+  Switch,
   TextField,
-  Switch
+  Typography,
 } from '@material-ui/core';
 
 import KNN from 'ml-knn'
@@ -19,6 +22,12 @@ import modelJSON from './model.json'
 const model = KNN.load(modelJSON)
 
 const useStyles = makeStyles(theme => ({
+  main: {
+    marginTop: theme.spacing(2),
+  },
+  cardHeader: {
+    marginBottom: 12,
+  },
   form: {
     '& .MuiFormControl-root': {
       margin: theme.spacing(1),
@@ -31,6 +40,11 @@ const useStyles = makeStyles(theme => ({
   exampleButton: {
     marginTop: "8px",
     height: "56px"
+  },
+  paramList: {
+    listStyle: "none",
+    margin: 0,
+    padding: 0
   }
 }))
 
@@ -44,7 +58,8 @@ function Form(props) {
   useEffect(() => { onChange(state) }, [onChange, state])
 
   const handleInput = (type, key, event) => {
-    const value = Number((type === "number") ? event.target.value : event.target.checked)
+    const target = event.target
+    const value = Number((type === "number") ? target.value : target.checked)
     setState(prev => ({ ...prev, [key]: value }))
   }
   const loadPreset = () => setState(examples.find(e => e.id === preset).features)
@@ -104,6 +119,7 @@ function Form(props) {
 
 function Result(props) {
   const { features } = props;
+  const classes = useStyles()
 
   if (features) {
     let values = params.map(p => features[p.key])
@@ -111,10 +127,41 @@ function Result(props) {
 
     return (
       <div>
-        <h2>Fiyat Sınıfı: {predict}</h2>
-        {Object.keys(features).map(key => (
-          <p key={key}>{key}: {features[key]}</p>
-        ))}
+        <Card className={classes.cardHeader}>
+          <CardContent>
+            <Typography
+              className={classes.cardHeader}
+              variant="h4"
+              component="h4"
+            >
+              Fiyat Sınıfı: {predict}
+            </Typography>
+            <Typography variant="body" component="p" color="textSecondary">
+              Bu web sayfası tarayıcınızda bir makine öğrenmesi modeli
+              çalıştırmaktadır. Bu projeyle akıllı telefonların özelliklerinden
+              fiyat kategorisi tahmin edilmektedir.
+            </Typography>
+            <Typography variant="body" component="p" color="textSecondary">
+              Model, akıllı telefonun 20 niteliğine göre 4 farklı kategorik
+              sonuç üretmektedir. Bunlar; 0 (düşük fiyat), 1 (ortalama fiyat),
+              2 (yüksek fiyat) ve 3 (çok yüksek fiyat) şeklindedir.
+            </Typography>
+            <Typography variant="body2" component="p" color="textSecondary">
+              <a href="https://github.com/thesseyren/ml-phone-price">GitHub</a>
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent>
+            <Typography variant="caption" color="textSecondary">
+              <ul className={classes.paramList}>
+                {Object.keys(features).map(key => (
+                  <li key={key}>{key}: {features[key]}</li>
+                ))}
+              </ul>
+            </Typography>
+          </CardContent>
+        </Card>
       </div>
     )
   } else {
@@ -129,7 +176,13 @@ function App() {
   const handleForm = features => setFeatures(features)
 
   return (
-    <Grid container justify="center" alignItems="baseline" spacing={2}>
+    <Grid
+      container
+      className={classes.main}
+      justify="center"
+      alignItems="baseline"
+      spacing={2}
+    >
       <Grid item xs={6}>
         <Form onChange={handleForm.bind(this)} />
       </Grid>
