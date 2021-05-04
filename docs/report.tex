@@ -1,0 +1,197 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{ucs}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage[turkish]{babel}
+\usepackage{fontenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{tikz}
+
+\title{\texttt{BMM4216} Örüntü Tanıma \\ Ara Sınav Ödevi}
+\author{\texttt{201713709039} -- Serhat Seyren}
+\date{4 Mayıs 2021}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Bu ödev, tamamen web tarayıcısında çalışabilen bir makine öğrenmesi uygulamasıdır.
+Uygulamanın ana amacı, akıllı telefonları özelliklerine göre fiyatlarını tahmin etmek, uygun fiyat kategorisi ile eşleştirmektir.
+Kullanıcı bir web sayfasını ziyaret ederek uygulamaya erişebilir, akıllı telefonun özelliklerini girerek, o cihaz için öngörülen fiyat kategorisini elde edebilir.
+Web tarayıcılarının içerisinde çalışabilmesi için tüm süreç JavaScript programlama dili ile yapılmıştır.
+
+Uygulama: \url{https://thesseyren.github.io/ml-phone-price/}
+
+Kaynak Kod(GitHub): \url{https://github.com/thesseyren/ml-phone-price}
+\end{abstract}
+
+\tableofcontents
+
+\newpage
+
+
+\section{JavaScript Programlama Dili ve Ortamı}
+
+Bu proje için yapay zeka uygulamaları için diğer alternatiflerine oranla (Python, Weka, MATLAB) daha az bilinen/kullanılan bir programlama dili seçtim.
+Bunun temel sebebi, bu sayede uygulamanın doğrudan kullanıcının tarayıcısında çalıştırlabilecek olması.
+Son kullanıcı sadece bir URL adresini ziyaret ederek uygulamayı kullanabilecek. Bu kısımda JavaScript'i ve ortamını tanıtmak istiyorum.
+
+\subsection{Web Tarayıcıları ve Node.js}
+JavaScript programlama dilinin en temel amacı statik web sayfalarına dinamiklik kazandırmak.
+Örneğin bugün Facebook'u ziyaret ettiğinizde, size biri mesaj gönderdiğinde ekranınıza bildirim düşüyorsa; bunun mümkün olabilmesinin arkasında JavaScript betikleri yatıyor.
+İlk olarak 1995 yılında Brendan Eich tarafından geliştirilen bu betik dili, dönemin web tarayıcısı olan Netscape'den beri tarayıcıların içinde yer alıyor.
+
+JavaScript dili, web tarayıcısının bir parçası olduğundan, diğer programlama dillerinin yapabildiği pek çok şeyi tek başına yapamaz.
+Örneğin kullanıcının dosya sistemine erişebilmesi, yeni bir dosya ekleyip silebilmesi gibi şeyler mümkün değil.
+İlk defa 2009 yılında JavaScript'i kendi başına bir programlama dili olarak kullanılabilmesini sağlayan bir proje duyuruldu: Node.js.
+Node.js sayesinde JavaScript dili, gerekli tüm standart kütüphaneler eklenerek, kendi başına kullanılabilecek bir programlama diline dönüştü.
+Yıllarca web tarayıcılarına çalışan JavaScript, Node.js sayesinde web sunucuları üstünde, son kullanıcının bilgisayarında çalışmaya başladı.
+
+\subsection{Paketler/Kütüphaneler}
+
+Tabi, günümüz programlama dillerinin her birinde en az bir paket yöneticisi, kütüphane kurucusu mevcut.
+Node.js için de aynı durum geçerli.
+Node.js için bu ikisi ``npm'' ve ``yarn''.
+Tabii bu ikisine alternatifler de mevcut ancak en popülerleri bunlar.
+
+Bu projede kullandığım kütüphaneleri şöyle özetleyebilirim:
+
+\begin{description}
+ \item[\href{https://c2fo.github.io/fast-csv/}{fast-csv}] CSV dosyalarını okuyabilmemizi sağlıyor.
+ \item[\href{https://mljs.github.io/matrix/}{ml-matrix}] Matris kütüphanesi. Veriyi bir matrise atmak ve üzerinde işlemler yapabilmemizi sağlıyor.
+ \item[\href{https://github.com/mljs/knn}{ml-knn}] Genel amaçlı KNN\footnote{K-Nearest Neighbors} algoritması.
+ \item[\href{https://github.com/mljs/confusion-matrix}{ml-confusion-matrix}] Eğitilmiş model için karışıklık matrisini\footnote{Confusion Matrix} ve F1 skorlarını sağlıyor.
+ \item[\href{https://reactjs.org/}{react}] Tüm bu çalışmayı SPA\footnote{Single Page Application} getirecek frontend framework'ü.
+ \item[\href{https://material-ui.com/}{material-ui}] Uygulamanın arayüzünde bulunan buton, düğme, anahtar, kart gibi görsel parçaların bulunduğu paket.
+\end{description}
+
+Kullanabileceğim kütüphanelere bakınırken, Python ortamından tanıdığımız popüler bir kütüphane olarn ``\href{https://pandas.pydata.org/}{pandas}'' kütüphanesine JavaScript için karşılığı kabul edilebilecek \href{https://danfo.jsdata.org/}{Danfo.js}'i fark ettim.
+Bunu (ve buna benzer kütüphaneleri) kullanmamamın sebebi, bu kütüphanelerin C modüllerine bağımlı olması.
+Yani paketi oluşturan kodun bir kısmı C dilinde yazılmış, bu kısım hedef platform için derlenmiş ve paketin içine yerleştirilmiş.
+Tarayıcının içinden C modülü çağıramayacağımız/işletemeyeceğimiz için saf JavaScript ile oluşturulmuş kütüphanelerden edinmem gerekiyordu.
+
+Bu noktada \href{https://github.com/mljs/}{mljs} imdadımıza yetişiyor.
+mljs, kendi içinde makine öğrenmesi nümerik analiz araçlarını barındıran bir organizasyon ve içinde barındırdığı tüm paketler hem Node.js için hem de web tarayıcıları tarafından işletilebiliyor.
+mljs'i tercih etmemin asıl sebebi bu.
+
+mljs'in altında bulunan paketlerin tamamına \href{https://github.com/mljs/ml#readme}{GitHub sayfalarından} ulaşılabilir.
+mljs'in (ve benim bu projede kullanmadığım) bazı paketleri:
+
+\begin{description}
+ \item[\href{https://github.com/mljs/kmeans}{ml-kmeans}] K-means kümeleme paketi.
+ \item[\href{https://github.com/mljs/naive-bayes}{ml-naivebayes}] Naive Bayes paketi.
+ \item[\href{https://github.com/mljs/cross-validation}{ml-cross-validation}] Çapraz doğrulama araçları.
+ \item[\href{https://github.com/mljs/decision-tree-cart}{ml-cart}] Sınıflandırma ve regresyon ağaçları paketi.
+ \item[\href{https://github.com/mljs/regression-simple-linear}{ml-regression-simple-linear}] Basit lineer regresyon paketi.
+ \item[\href{https://github.com/mljs/regression-polynomial}{ml-regression-polynomial}] Polinomial regresyon paketi.
+ \item[\href{https://github.com/mljs/distance}{ml-distance}] Uzaklık ve benzerlik fonksiyonları.
+\end{description}
+
+\newpage
+
+
+\section{Projenin Yapısı}
+
+Projedeki dosya ve dizinlerin hangi amaca hizmet ettiklerini şöyle açıklayayım:
+\begin{verbatim}
+ml-phone-price
+|-- docs
+|   `-- report.tex          (şu an okuduğunuz dokümanın latex kodu)
+|-- model                   (makine öğrenmesi modelinin bulunduğu dizin)
+|   |-- create-examples.js  (examples.csv'den rastgele örnek veri seçen betik)
+|   |-- create-model.js     (modeli eğiten betik)
+|   |-- helpers.js          (iki betik arasında paylaşılan bazı fonksiyonlar)
+|   |-- mobile-phone-prices.csv
+|   `-- mobile-phone-prices-examples.csv
+|-- package.json            (bu projeyi tanımlayan bilgiler, bağımlılıklar)
+|-- package-lock.json
+|-- public                  (web uygulaması için gerekli statik dosyalar)
+|   |-- index.html
+|   |-- manifest.json
+|   `-- robots.txt
+|-- README.md               (beni oku dosyası)
+`-- src                     (uygulamanın kaynak kodunun bulunduğu dizin)
+    |-- App.js              (uygulamanın asıl komponenti)
+    |-- App.test.js
+    |-- examples.json -> ../model/examples.json
+    |-- index.css           (temel CSS)
+    |-- index.js            (react uygulamasının başlangıcı, App.js import ediliyor)
+    |-- model.json -> ../model/model.json
+    |-- params.json         (modelin aldığı parametrelerin listesi)
+    |-- reportWebVitals.js
+    `-- setupTests.js
+\end{verbatim}
+
+Bu projenin en önemli kısmı \texttt{src/App.js} olacaktır, çünkü web uygulamasının tüm kodu orada bulunuyor denebilir.
+Kullanıcının parametreleri girdiği ekranın oluşturulması, makine öğrenmesi modelinin yüklenip parametrelerin modele verilip sonucun alınması, bu sonucun tekrar kullanıcıya gösterilmesi işlemleri burada yapılıyor.
+
+``model'' dizini altındaki betiklerin doğrudan çalıştırılmasına gerek yok, projeye npm komutları şeklinde dahil edildiler.
+Örneğin modeli eğitmek için \texttt{npm run trainmodel} komutu verilmesi yeterli.
+Aynı şekilde test verisinden örnek seçmek için \texttt{npm run createexamples} komutu verilebilir.
+
+\newpage
+
+
+\section{Makine Öğrenmesi Modeli}
+
+Model için kullandığım veriyi\footnote{\url{https://www.kaggle.com/iabhishekofficial/mobile-price-classification}} Kaggle'dan aldım.
+Bu veride, pazardaki akıllı telefonlarının özellikleri ve fiyat sınıfları yer alıyor.
+Akıllı telefonların 20 özelliği (6 boolean 14 sayı) ve bu özelliklere karşılık gelen 4 kategorili bir değer bulunuyor.
+Bu kategoriler; 0 (düşük fiyat), 1 (ortalama fiyat), 2 (yüksek fiyat) ve 3 (çok yüksek fiyat) şeklinde.
+
+Veri setinde 2000 tane örnek bulunmakta. Bunların \%25'ini test verisi olacak biçimde ayırdım. Makine öğrenmesi modeli için KNN (K-En Yakın Komşular) algoritmasını kullandım. Modelin başarımı ile ilgili bazı istatistikler:
+
+\begin{center}
+Doğruluk oranı: \%94.80
+\end{center}
+
+\begin{table}[h]
+ \center
+ \renewcommand{\arraystretch}{1.5}
+ \begin{tabular}{ cccc|c }
+ 128 & 0   & 0   & 3   & \%97.71 \\
+ 0   & 121 & 9   & 0   & \%93.08 \\
+ 0   & 7   & 110 & 2   & \%92.44 \\
+ 4   & 0   & 1   & 115 & \%95.83 \\
+ \hline
+ \%96.97 & \%94.53 & \%91.67 & \%95.83 & \%94.80
+ \end{tabular}
+ \renewcommand{\arraystretch}{1}
+ \caption{Modelin karışıklık matrisi.}
+\end{table}
+
+\begin{table}[h]
+ \center
+ \renewcommand{\arraystretch}{1.2}
+ \begin{tabular}{ c|cc }
+ & F1 & Kappa \\
+ \hline
+ 0 & 0.973 & 0.964 \\
+ 1 & 0.958 & 0.945 \\
+ 2 & 0.921 & 0.896 \\
+ 3 & 0.938 & 0.916 \\
+ \end{tabular}
+ \renewcommand{\arraystretch}{1}
+ \caption{Modelin F1 ve Kappa skorları.}
+\end{table}
+
+
+\section{Web Uygulaması}
+
+Bu kısım oldukça basit, \texttt{npm run build} komutu verilerek React uygulaması dağıtılabilir hale gelir.
+Bu komut proje dizinine ``build'' isimli bir dizin oluşturur.
+Herhangi bir web sunucu yazılımıyla bu dizin sunulduğunda uygulamamız erişilebilir olur.
+
+GitHub'ın bir başka özelliği olan GitHub Pages\footnote{\url{https://pages.github.com/}} ile uygulamayı yayına alabiliriz.
+GitHub Pages, geliştirilen projeler veya başka amaçlar için ücretsiz statik web sayfaları sunmanıza izin veren bir servis.
+Bizim projemiz için yayınlanması gereken tek şey ``build'' dizini.
+Bu projede yayınlamayı yapabilmek için \texttt{npm run deploy} komutunu işletmemiz yeterli.
+
+Uygulamaya \url{https://thesseyren.github.io/ml-phone-price/} adresinden erişilebilir.
+
+
+\end{document}
